@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+while read f1 f2 f3
+do
+        #echo "$f1"
+        aws ec2 create-tags --resources $f1 --tags Key="Business Owner",Value="$f2 $f3"
+done < input_file
+
+
+#input_file is a text file in the same folder as this script. First column of this file should contain instance ID. Second and third columns contain first name and last name
