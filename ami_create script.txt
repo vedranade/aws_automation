@@ -1,0 +1,11 @@
+#!/bin/bash
+DATE=`date +%d-%m-%Y`
+
+while read f1
+do
+
+	amiid=`aws ec2 create-image --instance-id '$f1' --name "$f1-AMI-$DATE" --no-reboot --output text`
+	days=`date +%j`
+	echo "$amiid $days" >> output
+
+done < instanceid_list

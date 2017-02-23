@@ -1,0 +1,17 @@
+#!/bin/bash
+
+while read f1 f2 #reads file column by column
+do
+
+#Following three lines calculate AMI age in no. of days
+        a=$f2
+        b=`date +%j`
+        c=`expr $b - $a`
+
+#Retention period of 15 days has been set in the IF condition:
+        if [ $c -gt 15 ]
+        then
+                aws ec2 deregister-image --image-id $f1
+                sed -i '1d' output
+        fi
+done < output #this file stores AMI id and days
