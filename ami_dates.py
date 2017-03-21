@@ -1,3 +1,6 @@
+#This simple script displays all AWS AMI creation dates in the current region. Current region is set in the AWS config file. Be sure to set credentials by running the 'aws configure' command
+
+
 import boto3
 
 ec2 = boto3.resource('ec2')
